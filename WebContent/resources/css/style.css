@@ -1,0 +1,151 @@
+body{
+	font-family: 'Malgun Gothic', 'Verdana';
+	background-color: #0080ff;
+	color : #00ff00;
+	margin : 0; /* 바깥쪽 간격 */
+	padding : 0; /* 안쪽 간격 */
+}
+h1,h2,h3,h4,h5,h6{
+	font-size : 1.5em; /* em은 상대적인 크기 지정 */
+}
+h1{
+	font-size : 2em; 
+	padding-bottom: 0; /* 아래쪽과의 간격 */
+	magin-bottom: 0;
+}
+div#wrapper{
+	width: 90%;
+	padding-bottom: 0;
+	magin-bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+div#header{
+	position: relative;
+	margin-bottom: 0;
+	padding: 0;
+	color: #000;
+}
+div#title{
+	float: left;
+	text-align: left;
+	display: block;
+}
+div#Login-box{
+	float: right;
+	margin: 10px;
+	font-size: 1.1em;
+	display: block;
+	color: #fff;
+}
+div#Login-box a:hover{ /* 마우스가 지나가면 효과주기 */
+	color: #fff;
+	text-decoration: none;
+	
+}
+div#Login-box a:active{ /* 실행되면 효과주기 */
+	color: #fff000;
+	text-decoration: none;
+}
+div#menu-box{
+	clear: both;
+	margin-top: 40px;
+}
+div#admin-box{
+	clear: both;
+	margin-top: 40px;
+}
+div#header h1 {
+	color: #fff;
+	padding: 5px 0;
+	margin: 0;
+	border: none;
+	line-height: 2em;
+	font-weight: bold; /* 글자 굵기 */	
+	font-size: 32px; /* 고정수치 */
+}
+div#content{
+	padding: 15px 30px 15px 30px; /* 12시 3시 6시 9시 방향 */
+	background-color: #fff;
+	margin-bottom: 30px;
+	min-height: 400px; /* 화면에 따른 최소 높이 */
+}
+div#content-box{
+	clear: both; /* 좌표 초기화 */
+	margin-top: 40px;
+}
+ul#menu{
+	text-align: right;
+	margin: 0;
+	border-bottom: 1px #ff0080;
+	position: relative;	
+}
+ul#menu li{
+	display: inline; /* 줄바꿈 하지 말것 */
+	list-style: none;
+	background-color: #ff8000;
+}
+ul#menu li a{
+	padding: 10px 20px;
+	background-color: #8080ff;
+	font-weight: bold;
+	text-decoration: none; /* 밑줄표시안하게 */
+	line-height: 2.8em; /* 작은화면이 기준 */ 
+	color: black;
+}
+ul#menu li a:hover{
+	background-color: #800000;
+	text-decoration: none; 
+}
+ul#menu li a:active{
+	background-color: #ff00ff;
+	text-decoration: none; 
+}
+div#footer{
+	clear: both;
+	color: #fff;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0;
+	line-height: normal;
+	font-size: 1.5em;
+}
+
+ table,th,td {
+	border: 1px solid black;
+	width:80%;
+	border-collapse: collapse;
+	text-align: center;
+	}
+.border{border: 1px solid black}
+.width-200{width:200px}
+.height-150{height:150px}
+.height-400{height:400px}
+.margin-auto{margin: 0 auto}
+.margin-200-auto{margin: 200px auto}
+.image-size{width:100%; height:393px}
+.text-align{text-align: center}
+.width-50{width:50px} 
+.bgColorisYellow{background-color: #ffff00}
+.center{margin: 0 auto}
+.width100pt{width : 100%}
+.width90pt{width : 90%}
+.width80pt{width : 80%}
+.fontColorBlue{color:blue}
+.cursor{cursor:pointer;}
+.marginTop30px{margin-top: 30px}
+.marginTop50px{margin-top: 50px}
+.marginLeft200px{margin-left: 200px}
+.marginRight200px{margin-right: 200px}
+.marginBot30px{margin-bottom: 30px}
+.marginBot50px{margin-bottom: 50px}
+.width300px{width: 300px}
+.floatRight{float: right;}
+.pageBox{
+	list-style : none; /* Remove list bullets */
+	padding:  0;
+	margin: 0;
+}
+.pageBox li{
+	 display: inline;
+}
