@@ -17,8 +17,10 @@ public class SearchCommand extends Command{
 		setPage(request.getParameter("page"));
 		execute(); 
 	}
+	
 	@Override
 	public void execute() {
+		super.execute();
 		if(request.getSession().getAttribute("option") == null) {
 			request.getSession().setAttribute("option", "none");
 			request.getSession().setAttribute("count", MemberServiceImpl.getInstance().count());
@@ -37,42 +39,34 @@ public class SearchCommand extends Command{
 			);
 		}	
 		
-		String pageNum = request.getParameter("pageNum");
 		PageProxy pxy = new PageProxy();
+		String pageNum = request.getParameter("pageNum");  //초기값으로 페이지가 1이면 코드가 더 줄어들것 같다.
 		pxy.carryOut(
 				((pageNum==null)?
 						"1/"
 						:pageNum+"/")
 				+request.getSession().getAttribute("count"));
 		Pagination page = pxy.getPagination();
-		
-		String keys,values;
-		if(!(((String)request.getSession().getAttribute("option")).equals("none"))) {
-			keys = "domain/beginRow/endRow/column/value";
-			values = 
-				Domain.MEMBER.toString()+"/"
-				+String.valueOf(page.getBeginRow())+"/"
-				+String.valueOf(page.getEndRow())+"/"
-				+(String) request.getSession().getAttribute("option")+"/"
-				+(String) request.getSession().getAttribute("word");
-		}else {
-			keys = "domain/beginRow/endRow";
-			values = 
-				Domain.MEMBER.toString()+"/"
-				+String.valueOf(page.getBeginRow())+"/"
-				+String.valueOf(page.getEndRow());
-		}
-		
-		String[] arr1 = keys.split("/"), 
-				 arr2 = values.split("/");
+		boolean flag = !(((String)request.getSession().getAttribute("option")).equals("none"));
+		String[] arr1 = ("domain/beginRow/endRow"
+						+((flag)?
+								"/column/value"
+								:""))
+				.split("/"), 
+				 arr2 = (Domain.MEMBER.toString()+"/"
+							+String.valueOf(page.getBeginRow())+"/"
+							+String.valueOf(page.getEndRow())
+							+((flag)?
+							"/"+((String) request.getSession().getAttribute("option"))
+							+"/"+((String) request.getSession().getAttribute("word"))
+							:""))
+				 .split("/");
 		Map<String,Object>paramMap = new HashMap<>();
 		for(int i=0;i<arr1.length;i++) {
 			paramMap.put(arr1[i], arr2[i]);
 		}
 		
 		request.setAttribute("page", page);
-		List<MemberBean> members = MemberServiceImpl.getInstance().search(paramMap);
-		request.setAttribute("list", members);
-		super.execute();
+		request.setAttribute("list", MemberServiceImpl.getInstance().search(paramMap));
 	}
 }

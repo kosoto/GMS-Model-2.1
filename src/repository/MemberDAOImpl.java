@@ -1,12 +1,8 @@
 package repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 import domain.*;
 import enums.*;
-import factory.DataBaseFactory;
-import pool.DBConstant;
 import template.*;
 
 public class MemberDAOImpl implements MemberDAO{

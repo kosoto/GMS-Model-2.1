@@ -15,8 +15,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/lombok.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2-search/WebContent/WEB-INF/lib/cos.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2-search/WebContent/WEB-INF/lib/jstl.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2-search/WebContent/WEB-INF/lib/standard.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2.1/WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2.1/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/user/eclipse/jee-oxygen/eclipse/DBworkspace/GMS-Model-2.1/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
