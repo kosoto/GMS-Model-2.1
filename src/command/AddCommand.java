@@ -22,7 +22,7 @@ public class AddCommand extends Command{
 		case MEMBER : 
 			MemberBean member = new MemberBean();
 			member.setMemberId(request.getParameter("userid"));
-			member.setPassword(request.getParameter("pass"));
+			member.setPass(request.getParameter("pass"));
 			member.setName(request.getParameter("name"));
 			member.setSsn(request.getParameter("ssn"));
 			member.setGender(request.getParameter("gender"));

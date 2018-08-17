@@ -28,8 +28,8 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAOImpl.getInstance().count();
 	}
 	@Override
-	public int count(String word) {
-		return MemberDAOImpl.getInstance().count(word);
+	public int count(Map<String, Object> paramMap) {
+		return MemberDAOImpl.getInstance().count(paramMap);
 	}
 	@Override
 	public void modify(Map<?, ?> param) {
@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public void remove(MemberBean member) {
-		
+		MemberDAOImpl.getInstance().delete(member);
 	}
 	@Override
 	public MemberBean login(MemberBean member) {
@@ -46,7 +46,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean existId(String id) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

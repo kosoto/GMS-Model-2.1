@@ -34,7 +34,7 @@ public class MemberDAOImpl implements MemberDAO{
 		Map<String,Object> map = new HashMap<>();
 		map.put("table", Domain.MEMBER);
 		map.put("value1", member.getMemberId());
-		map.put("value2", member.getPassword());
+		map.put("value2", member.getPass());
 		q.play(map);
 	}
 	
@@ -43,7 +43,7 @@ public class MemberDAOImpl implements MemberDAO{
 		q = new LoginQuery();
 		HashMap<String, Object>map = new HashMap<>();
 		map.put("memid", member.getMemberId());
-		map.put("pass", member.getPassword());
+		map.put("pass", member.getPass());
 		q.play(map);
 		return (MemberBean) q.getO();
 	}
@@ -55,7 +55,7 @@ public class MemberDAOImpl implements MemberDAO{
 		map.put("table", Domain.MEMBER);
 		map.put("value1", member.getMemberId());
 		map.put("value2", member.getName());
-		map.put("value4", member.getPassword());
+		map.put("value4", member.getPass());
 		map.put("value3", member.getSsn());
 		map.put("value5", member.getAge());
 		map.put("value6", member.getGender());
@@ -77,12 +77,9 @@ public class MemberDAOImpl implements MemberDAO{
 		return q.getNumber();
 	}
 	@Override
-	public int count(String word) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("column", word.split("/")[0].toUpperCase());
-		map.put("value", word.split("/")[1]);
+	public int count(Map<String, Object> paramMap) {
 		q = new CountQuery();
-		q.play(map);
+		q.play(paramMap);
 		return q.getNumber();
 	}
 	@Override

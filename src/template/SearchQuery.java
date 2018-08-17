@@ -10,7 +10,7 @@ public class SearchQuery extends QueryTemplate{
 	@Override
 	void initialize() {
 		map.put("sql", 
-				(!map.containsKey("column"))?
+				(map.get("column")==null)?
 					String.format(
 							MemberQuery.LIST.toString(), 
 							((String)map.get("domain")))
@@ -27,7 +27,7 @@ public class SearchQuery extends QueryTemplate{
 	void startPlay() {
 		try {
 			int j = 0;
-			if(map.containsKey("column")) {
+			if(map.get("column")!=null) {
 				j++;
 				pstmt.setString(j, 
 					"%"+((String)map.get("value"))+"%");
@@ -50,7 +50,7 @@ public class SearchQuery extends QueryTemplate{
 			while(rs.next()) {
 				member = new MemberBean();
 				member.setMemberId(rs.getString("MEM_ID"));
-				member.setPassword(rs.getString("PASSWORD"));
+				member.setPass(rs.getString("PASSWORD"));
 				member.setTeamId(rs.getString("TEAM_ID"));
 				member.setName(rs.getString("NAME"));
 				member.setGender(rs.getString("GENDER"));

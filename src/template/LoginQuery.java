@@ -29,7 +29,7 @@ public class LoginQuery extends QueryTemplate{
 			while(rs.next()) {
 				MemberBean member = new MemberBean();
 				member.setMemberId(rs.getString("MEM_ID"));
-				member.setPassword(rs.getString("PASSWORD"));
+				member.setPass(rs.getString("PASSWORD"));
 				member.setTeamId(rs.getString("TEAM_ID"));
 				member.setName(rs.getString("NAME"));
 				member.setGender(rs.getString("GENDER"));

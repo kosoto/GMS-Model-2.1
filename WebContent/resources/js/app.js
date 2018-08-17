@@ -67,40 +67,31 @@ var members = (()=>{
 				});
 				break;
 			case 'modify':
-				alert('modify 진입');
 				var form = document.getElementById('updateForm');
-				/*var teamid = document.getElementsByName('teamid');
+				var teamid = document.getElementsByName('teamid');
 				for(var i in teamid){
-					if(teamid[i].value === x.user.teamId.toLowerCase()){
+					if(teamid[i].value === x.teamId.toLowerCase()){
 						document.getElementById(teamid[i].value).checked = true;
 					}
 				}
 
 				var roll = document.getElementById('roll');
 				for(var i=0;i<roll.options.length;i++){
-					if(roll.options[i].value === x.user.roll){
+					if(roll.options[i].value === x.roll){
 						roll.options[i].setAttribute("selected","selected");
 					}
-				}*/
+				}
 
-				//var newPass = form.newPass.value;
+				var newPass = form.newPass.value;
 				
 				document.getElementById('updateBtn')
 				.addEventListener('click',function(){
-					alert('수정 버튼 누름');
-					var node = document.createElement('input');
-					node.setAttribute('type','hidden');
-					node.setAttribute('name','action');
-					node.setAttribute('value','modify');
-					form.appendChild(node);
-					form.action = x.context+"/member.do";
-					form.method = "post"; //get은 입력값을 노출, post는 노출x form태그만 post방식이 있음
-					form.submit();
-					/*if((newPass !== "" && newPass !== x.user.pass) ||
-					   !document.getElementById(x.user.teamId.toLowerCase()).checked ||
-					   roll.value !== x.user.roll){
+					alert('newPass : '+newPass);
+					if((newPass !== "" && newPass !== x.pass) ||
+					   !document.getElementById(x.teamId.toLowerCase()).checked ||
+					   roll.value !== x.roll){
 						if(newPass === ""){
-							form.newPass.value = x.user.pass;
+							form.newPass.value = x.pass;
 						}
 						var node = document.createElement('input');
 						node.setAttribute('type','hidden');
@@ -112,13 +103,15 @@ var members = (()=>{
 						form.submit();
 					}else{
 						alert('수정사항이 없습니다.');
-					}*/
+					}
 					
 				});
 				break;
 			case 'remove':
+				alert('remove 페이지 진입');
 				document.getElementById('deleteBtn')
 				.addEventListener('click',function(){
+				alert('삭제 버튼 누름');
 				var form = document.getElementById('deleteForm');
 				form.action = x.context+"/member.do";
 				form.method = "post";
@@ -168,14 +161,21 @@ var members = (()=>{
 								)
 						}
 				);
+				
+				document.getElementById('logOut')
+				.addEventListener('click',()=>{
+					location.href =
+						x.context+"/member.do?action=login&flag=logout"
+				});
 				break;
 			}
 			
-			document.getElementById('profile')
-			.addEventListener('click',function(){
-				service.addClass(this, 'width-200 height-150');
+			service.addClass(document.getElementById('profile'), 'width-200 height-150');
+			document.getElementById('moveHome')
+			.addEventListener('click',()=>{
+				location.href = 
+					x.context+"/common.do"
 			})
-			
 		}//main end
 	}//return end
 })();
@@ -186,13 +186,23 @@ var common = (()=>{
 			document.getElementById('moveAdmin')
 			.addEventListener('click',function(){  
 				 location.href =
-                     x+"/admin.do?action=search";
+                     x+"/admin.do?action=search&pageNum=1";
+				/*router.move(
+						{context : x,
+						domain : 'admin',
+						action : 'search',
+						page : 'main'}
+						)*/
 				/*var isAdmin = confirm('관리자입니까?'); //window의 method,BOM객체
 				if(isAdmin){
 					var password = prompt('관리자 비번을 입력바랍니다.');
 					if(password == 1){
-						location.href =
-                     	x+"/admin.do?action=search&option=none";
+						router.move(
+								{context : x,
+								domain : 'admin',
+								action : 'search',
+								page : 'main'}
+								)
 					}
 				}else{
 					alert('관리자만 접근이 허용됩니다.');
@@ -242,14 +252,14 @@ var admin = (()=>{
 							break;
 						default : break;
 						}
-					 location.href = x
+					 location.href = x.context
 					+"/"+domain+".do?"
 					+"action="+action
 					+"&option="
 					+document.getElementById('option').value
 					+"&word="
 					+document.getElementById('word').value
-					+"&table=member"
+					+"&table=member&pageNum=1"
 					}else{
 						alert('검색어를 입력하세요.');
 					}
@@ -261,8 +271,7 @@ var admin = (()=>{
 			document.getElementById('listBtn')
 			.addEventListener('click',function(){
 				location.href =
-					x+"/admin.do?action=search"
-					+"&option=none"		
+					x.context+"/admin.do?action=search&pageNum=1";	
 			})
 			
 			document.getElementById('contentBoxMeta').style.width = '80%';
@@ -271,7 +280,7 @@ var admin = (()=>{
 			for(var i of document.querySelectorAll('.username')){
                  service.addClass(i,'cursor fontColorBlue');
                  i.addEventListener('click',function(){
-                       location.href = x
+                       location.href = x.context
                             +"/member.do?action=retrieve&option=mem_id&table=member&word="
                            +this.getAttribute('id');//콜백함수에서의 this는 이 함수를 호출한 객체
                  });
@@ -279,12 +288,21 @@ var admin = (()=>{
             for(var i of document.querySelectorAll('.pageNum')){
             	service.addClass(i,'cursor fontColorBlue');
             	i.addEventListener('click',function(){
-        			location.href = x
+        			location.href = x.context
         			+"/admin.do?action=search&page=main&pageNum="
-        			+this.getAttribute('id');
+        			+this.getAttribute('id')
+        			+((x.option === "")?
+        				""
+        				:"&option="+x.option
+	        			 +"&word="+x.word);
+            	
         		});
         	};
-        	
+        	document.getElementById('moveHome')
+			.addEventListener('click',()=>{
+				location.href = 
+					x.context+"/common.do"
+			})
         	
         	
 		}//main method 끝

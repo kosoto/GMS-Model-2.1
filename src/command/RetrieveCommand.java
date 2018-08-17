@@ -18,6 +18,7 @@ public class RetrieveCommand extends Command{
 	}
 	@Override
 	public void execute() {
+		super.execute();
 		if(request.getParameter("table") != null) {
 			request.getSession().setAttribute("user", 
 					MemberServiceImpl
@@ -30,10 +31,11 @@ public class RetrieveCommand extends Command{
 					);
 		}
 		
-		String img = ImageServiceImpl.getInstance().retrieve(
-				((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
-				);
-		request.getSession().setAttribute("profile", "/upload/"+img);
-		super.execute();
+		request.getSession().setAttribute("profile", 
+						"/upload/"
+						+(ImageServiceImpl.getInstance().retrieve(
+						((MemberBean)(request.getSession().getAttribute("user"))).getMemberId()
+						))
+					);
 	}
 }
